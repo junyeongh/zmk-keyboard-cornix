@@ -38,13 +38,14 @@ include:
 
   # Use cornix without dongle
   - board: cornix_left
-    shield: cornix_indicator
+    # shield: cornix_indicator
     artifact-name: cornix_left_default_nosd
+    # zmk studio
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
 
   - board: cornix_right
-    shield: cornix_indicator
+    # shield: cornix_indicator
     artifact-name: cornix_right_nosd
 
   - board: cornix_right

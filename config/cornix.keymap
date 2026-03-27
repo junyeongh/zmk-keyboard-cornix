@@ -151,10 +151,10 @@
             //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&bt BT_CLR    &none  &none  &none  &bt BT_CLR_ALL  &none                      &none        &none  &none  &none  &none  &none
-&bt BT_SEL 0  &none  &none  &none  &none           &none                      &none        &none  &none  &none  &none  &none
-&bt BT_SEL 1  &none  &none  &none  &none           &bootloader  &none  &to 0  &bootloader  &none  &none  &none  &none  &none
-&bt BT_SEL 2  &none  &none  &none  &none           &none                      &none        &none  &none  &none  &none  &kp N4
+&bt BT_CLR    &none  &none  &none  &bt BT_CLR_ALL  &studio_unlock                &none        &none  &none  &none  &none  &none
+&bt BT_SEL 0  &none  &none  &none  &none           &none                         &none        &none  &none  &none  &none  &none
+&bt BT_SEL 1  &none  &none  &none  &none           &bootloader     &none  &to 0  &bootloader  &none  &none  &none  &none  &none
+&bt BT_SEL 2  &none  &none  &none  &none           &none                         &none        &none  &none  &none  &none  &kp N4
             >;
         };
     };
