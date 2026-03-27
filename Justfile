@@ -113,17 +113,17 @@ clean-nix:
     nix-collect-garbage --delete-old
 
 # parse & plot keymap
-draw keyboard: 
+draw keyboard:
     #!/usr/bin/env bash
     set -euo pipefail
-    echo "generated yaml"     
+    echo "generated yaml"
     set -x
     ## should use -z for zmk keyboards
     keymap -c "{{ draw }}/config-{{ keyboard }}.yaml" parse -z "{{ config }}/{{ keyboard }}.keymap" --virtual-layers Combos >"{{ draw }}/{{ keyboard }}.yaml"
     KBOARD=`yq -r '.layout."zmk_keyboard"' {{ draw }}/{{ keyboard }}.yaml`
     echo "found zmk keyboard name : ${KBOARD}"
     #yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/{{ keyboard }}.yaml"
-    echo "generated svg for ${KBOARD}"     
+    echo "generated svg for ${KBOARD}"
     keymap -c "{{ draw }}/config-{{ keyboard }}.yaml" draw "{{ draw }}/{{ keyboard }}.yaml" -z "${KBOARD}" >"{{ draw }}/{{ keyboard }}.svg"
 
 # initialize west
@@ -165,12 +165,12 @@ list_py:
 
 # update west
 update: update-config
-    west config zephyr.base -- "{{module_base}}/zephyr" 
+    west config zephyr.base -- "{{module_base}}/zephyr"
     west update --fetch-opt=--filter=blob:none
 
 update-config:
-    #west config build.cmake-args -- "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DZMK_EXTRA_MODULES=$(pwd)" 
-    west config build.cmake-args -- "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" 
+    #west config build.cmake-args -- "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DZMK_EXTRA_MODULES=$(pwd)"
+    west config build.cmake-args -- "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 # upgrade zephyr-sdk and python dependencies
 upgrade-sdk:
     nix flake update --flake .
@@ -203,3 +203,6 @@ test $testpath *FLAGS:
     if [[ "{{ FLAGS }}" == *"--auto-accept"* ]]; then
         cp ${build_dir}/keycode_events.log ${config_dir}/keycode_events.snapshot
     fi
+
+build-local:
+    act --workflows .github/workflows/build.yml --artifact-server-path .local

@@ -1,5 +1,7 @@
 # ZMK Keyboard for Cornix
 
+Repository forked from [hitsmaxft/zmk-keyboard-cornix](https://github.com/hitsmaxft/zmk-keyboard-cornix)
+
 ## Introduction to Boards and Shields
 
 This repository contains the ZMK firmware configuration for the Cornix split keyboard. Below is an explanation of the different boards and shields available in this project:
@@ -24,22 +26,20 @@ The project includes several specialized shields that provide additional functio
 
 This community firmware has been tested with Cornix using ZMK and provides full split-role configuration, battery power management, and Bluetooth central/peripheral setup per ZMK split guidelines
 
-
 ![image](images/cornix_with_dongle.png)
 ![image](images/cornix_layout.png)
 
 ## warning：device breakdown recovery
 
 the original cornix use flash layout without softdevice
-so in the project. all board use nosd layout as default 
+so in the project. all board use nosd layout as default
 
-if you flash firmware into dongle and found it can't work with the original  firmware 
-you have two solutions 
+if you flash firmware into dongle and found it can't work with the original  firmware
+you have two solutions
 
-1. （recommend）flash the sd restore uf2 under boooader direcotry（its for nice nano 2 ，but i think it works for most of nrf52840 device） other boards https://github.com/hitsmaxft/Adafruit_nRF52_Bootloader/actions/runs/18398554358
+1. （recommend）flash the sd restore uf2 under boooader direcotry（its for nice nano 2 ，but i think it works for most of nrf52840 device） other boards <https://github.com/hitsmaxft/Adafruit_nRF52_Bootloader/actions/runs/18398554358>
 2. build your firmware  with snippet  'nrf
-52840-nosd', make zmk ignore soft device 
-
+52840-nosd', make zmk ignore soft device
 
 ## TODO LIST
 
@@ -49,7 +49,6 @@ you have two solutions
 - [x] support various of dongles
 - [x] upgrade to zephyr4.1 and lvgl9 , since v2.7, no dongle screen support yet
 - [ ] rgb since in future v3
-
 
 ### about RGB
 
@@ -72,7 +71,7 @@ Cornix is a Corne‑inspired split ergonomic keyboard featuring a compact 3×6 c
 - **Firmware**: Fully VIAL‑supported for keymaps and layer customization, stock firmware is RMK.
 - Premium **CNC‑machined aluminum chassis**, custom damping foam, and portable storage pouch.
 
-> this project owner is RMK contributor too, support RMK https://rmk.rs/ please
+> this project owner is RMK contributor too, support RMK <https://rmk.rs/> please
 
 ## --Bootloader Recovery Instructions--
 
@@ -122,10 +121,10 @@ If you're new to ZMK and don't want to deal with `west.yml` or module management
 
 This section will guide you through building the Cornix ZMK firmware from scratch using the official ZMK firmware development process.
 
-
 ### Prerequisites
 
 Before starting, ensure you have the following:
+
 - A GitHub account
  Git installed on your system
 - Basic understanding of Git and GitHub
@@ -134,7 +133,7 @@ Before starting, ensure you have the following:
 ### Step 1: Initialize ZMK Config Repository
 
 1. **Create a new repository** using the official ZMK config template:
-   - Visit: https://github.com/zmkfirmware/unified-zmk-config-template
+   - Visit: <https://github.com/zmkfirmware/unified-zmk-config-template>
    - Click "Use this template" → "Create a new repository"
    - Name your repository (e.g., `cornix-zmk-config`)
    - Choose "Public" or "Private" as preferred
@@ -154,8 +153,9 @@ Before starting, ensure you have the following:
    ```
 
 > **Important**: You should thoroughly read the ZMK documentation before proceeding, as ZMK firmware development has a learning curve.
-> - ZMK Customization Guide: https://zmk.dev/docs/customization
-> - ZMK Configuration: https://zmk.dev/docs/user-setup
+>
+> - ZMK Customization Guide: <https://zmk.dev/docs/customization>
+> - ZMK Configuration: <https://zmk.dev/docs/user-setup>
 
 ### Step 2: Add Cornix Shield to Your Project
 
@@ -206,6 +206,7 @@ west update
 Edit the `build.yaml` file, add:
 
 > [!NOTE]
+>
 > 1. If you are using (default) cornix without dongle, choose "cornix_left", "cornix_right" and "reset".
 > 2. If you are using cornix with dongle, choose "cornix_dongle". "cornix_left_for_dongle", "cornix_right" and "reset".
 > 3. Add "cornix_indicator" shield to enable RGB led light. It consumes much more power, use at your own risk.
@@ -248,6 +249,7 @@ Use your preferred method to build
 ### 5. Flash Firmware
 
 Flash the generated `.uf2` files to the corresponding microcontroller:
+
 - Left half: `build/left/zephyr/zmk.uf2`
 - Right half: `build/right/zephyr/zmk.uf2`
 
@@ -270,6 +272,7 @@ include:
 ```
 
 To create a custom shield for the display part:
+
 1. The `dongle_display` module is a module contains display widgets, included as part of the project dependencies via west or locally
 2. If you need to create a custom shield for your display hardware, you can create a new shield that provides the appropriate display configuration. Here shows `cornix_dongle_eyelash` as an example
 3. If your board already has `zephyr,display` in the device tree, you can omit the `cornix_dongle_eyelash` shield
@@ -284,6 +287,7 @@ For custom dongle screens, add a new target in build.yaml for your custom dongle
 ```
 
 To create a custom shield for your display:
+
 1. Use `cornix_dongle_adapter` as the base shield for the matrix and Bluetooth functionality
 2. Add your custom shield in the `build.yaml` file with the appropriate board and configuration
 3. Use `cornix_dongle_eyelash` as an example and modify the display parts to match your custom board
@@ -325,29 +329,32 @@ If you prefer to build this project locally without adding it as a dependency in
 ### Build Steps
 
 1. **Clone this repository**:
-   ```bash
-   git clone https://github.com/hitsmaxft/zmk-keyboard-cornix.git
-   ```
+
+```bash
+git clone https://github.com/hitsmaxft/zmk-keyboard-cornix.git
+```
 
 2. **Configure your ZMK build with the extra module**:
 
-   Edit your `.west/config` file and add the cmake argument under the `[build]` section:
+Edit your `.west/config` file and add the cmake argument under the `[build]` section:
 
-   ```ini
-   [build]
-   cmake-args = -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DZMK_EXTRA_MODULES=/full/absolute/path/to/zmk-keyboard-cornix
-   ```
+```ini
+[build]
+cmake-args = -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DZMK_EXTRA_MODULES=/full/absolute/path/to/zmk-keyboard-cornix
+```
 
-   Replace `/full/absolute/path/to/zmk-keyboard-cornix` with the actual absolute path where you cloned this repository.
+Replace `/full/absolute/path/to/zmk-keyboard-cornix` with the actual absolute path where you cloned this repository.
 
 3. **Build the firmware**:
-   ```bash
-<<<<<<< HEAD
-   west build -b cornix_main_left
-=======
-   west build -b cornix_left
->>>>>>> 16dcccb (migrate to zephyr4 , disable dongle screen)
-   west build -b cornix_right
-   ```
+
+```bash
+# <<<<<<< HEAD
+# west build -b cornix_main_left
+# =======
+# west build -b cornix_left
+# >>>>>>> 16dcccb (migrate to zephyr4 , disable dongle screen)
+west build -b cornix_right
+```
 
 This method allows you to use the Cornix shield without modifying your existing ZMK configuration's west.yaml file.
+</details>
