@@ -204,5 +204,8 @@ test $testpath *FLAGS:
         cp ${build_dir}/keycode_events.log ${config_dir}/keycode_events.snapshot
     fi
 
-build-local:
+build-docker:
     act --workflows .github/workflows/build.yml --artifact-server-path .local
+
+build-remote:
+    gh workflow run build.yml -R junyeongh/zmk-keyboard-cornix

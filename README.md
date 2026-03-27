@@ -2,8 +2,27 @@
 
 Repository forked from [hitsmaxft/zmk-keyboard-cornix](https://github.com/hitsmaxft/zmk-keyboard-cornix)
 
+## Additional `just` commands
+
+```bash
+# Build firmware locally using act on docker
+just build-docker
+
+# Build firmware remotely triggering GitHub Actions
+just build-remote
+```
+
+## Useful Links
+
 - [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/)
 - [Keymap Drawer](https://keymap-drawer.streamlit.app/)
+
+![https://github.com/junyeongh/zmk-keyboard-cornix/blob/main/config/cornix.keymap](./images/cornix.keymap.png)
+
+---
+
+<details>
+   <summary>README.md from original repository</summary>
 
 ## Introduction to Boards and Shields
 
@@ -32,7 +51,7 @@ This community firmware has been tested with Cornix using ZMK and provides full 
 ![image](images/cornix_with_dongle.png)
 ![image](images/cornix_layout.png)
 
-## warning：device breakdown recovery
+## Warning: device breakdown recovery
 
 the original cornix use flash layout without softdevice
 so in the project. all board use nosd layout as default
@@ -53,7 +72,7 @@ you have two solutions
 - [x] upgrade to zephyr4.1 and lvgl9 , since v2.7, no dongle screen support yet
 - [ ] rgb since in future v3
 
-### about RGB
+### About RGB
 
 Cornix shield has 2 RGB LEDs on each side, controled by PWM in the stock firmware.
 
@@ -360,4 +379,5 @@ west build -b cornix_right
 ```
 
 This method allows you to use the Cornix shield without modifying your existing ZMK configuration's west.yaml file.
+
 </details>
