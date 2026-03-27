@@ -2,10 +2,11 @@ file_format: "1"
 id: cornix
 name: Cornix
 type: board
-url: 
+url:
 features:
   - keys
   - encoder
+  - studio
   # - led
 siblings:
   - cornix_left
