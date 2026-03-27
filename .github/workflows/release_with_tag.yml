@@ -1,10 +1,9 @@
 name: Auto Build & Release ZMK Firmware
-
 on:
   push:
     tags:
       - "v*.*"   # Only trigger when you push a version tag like v1.2.3
-      - "202*.*"
+      - "config_v*.*"
   workflow_dispatch:
 
 permissions:

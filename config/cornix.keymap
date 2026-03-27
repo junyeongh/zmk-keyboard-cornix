@@ -16,14 +16,7 @@
 #define KEYS_T LH1 LH0 RH0 RH1
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        to-sym {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
+    conditional_layers { compatible = "zmk,conditional-layers"; };
 
     combos {
         compatible = "zmk,combos";
@@ -37,6 +30,11 @@
         to_base {
             bindings = <&to 0>;
             key-positions = <16 19>;
+        };
+
+        to_nav {
+            bindings = <&mo 3>;
+            key-positions = <44 43>;
         };
 
         nav_toggle {
