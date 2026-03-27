@@ -2,6 +2,9 @@
 
 Repository forked from [hitsmaxft/zmk-keyboard-cornix](https://github.com/hitsmaxft/zmk-keyboard-cornix)
 
+- [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/)
+- [Keymap Drawer](https://keymap-drawer.streamlit.app/)
+
 ## Introduction to Boards and Shields
 
 This repository contains the ZMK firmware configuration for the Cornix split keyboard. Below is an explanation of the different boards and shields available in this project:
