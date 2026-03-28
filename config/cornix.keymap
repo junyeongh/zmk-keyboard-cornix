@@ -16,6 +16,36 @@
 #define KEYS_T LH1 LH0 RH0 RH1
 
 / {
+    behaviors {
+        td_rcra: td_rctrl_ralt {
+            compatible = "zmk,behavior-tap-dance";
+            label = "Tap: RCTRL / Tap-Tap: RALT";
+            #binding-cells = <0>;
+            bindings = <&kp RCTRL>, <&kp RALT>;
+        };
+
+        td_tt1: td_tt1 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TT(1)";
+            #binding-cells = <0>;
+            bindings = <&mo 1>, <&tog 1>;
+        };
+
+        td_tt2: td_tt2 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TT(2)";
+            #binding-cells = <0>;
+            bindings = <&mo 2>, <&tog 2>;
+        };
+
+        td_tt3: td_tt3 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TT(3)";
+            #binding-cells = <0>;
+            bindings = <&mo 3>, <&tog 3>;
+        };
+    };
+
     conditional_layers { compatible = "zmk,conditional-layers"; };
 
     combos {
@@ -37,15 +67,9 @@
             key-positions = <44 43>;
         };
 
-        nav_toggle {
-            bindings = <&tog 3>;
-            key-positions = <29 32>;
-            layers = <3>;
-        };
-
         to_debug {
             bindings = <&to 4>;
-            key-positions = <42 45>;
+            key-positions = <17 18>;
             layers = <3>;
         };
     };
@@ -64,10 +88,10 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp TAB           &kp Q  &kp W     &kp E     &kp R      &kp T                                &kp Y  &kp U      &kp I            &kp O      &kp P      &kp BACKSPACE
-&mt LCTRL ESCAPE  &kp A  &kp S     &kp D     &kp F      &kp G                                &kp H  &kp J      &kp K            &kp L      &kp SEMI   &kp ENTER
-&kp LEFT_SHIFT    &kp Z  &kp X     &kp C     &kp V      &kp B  &kp C_MUTE  &kp C_PLAY_PAUSE  &kp N  &kp M      &kp COMMA        &kp DOT    &kp FSLH   &kp RSHFT
-&kp ESC           &to 0  &kp LGUI  &kp LALT  &kp SPACE  &mo 1                                &mo 2  &kp SPACE  &lt 3 RIGHT_ALT  &kp RCTRL  &kp MINUS  &kp EQUAL
+&kp TAB         &kp Q  &kp W     &kp E     &kp R      &kp T                                  &kp Y    &kp U      &kp I      &kp O     &kp P      &kp BACKSPACE
+&mt LCTRL ESC   &kp A  &kp S     &kp D     &kp F      &kp G                                  &kp H    &kp J      &kp K      &kp L     &kp SEMI   &kp ENTER
+&kp LEFT_SHIFT  &kp Z  &kp X     &kp C     &kp V      &kp B    &kp C_MUTE  &kp C_PLAY_PAUSE  &kp N    &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
+&kp ESC         &to 0  &kp LGUI  &kp LALT  &kp SPACE  &td_tt1                                &td_tt2  &kp SPACE  &td_tt3    &td_rcra  &kp MINUS  &kp EQUAL
             >;
 
             sensor-bindings =
