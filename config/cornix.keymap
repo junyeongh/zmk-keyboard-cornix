@@ -18,31 +18,31 @@
 / {
     behaviors {
         td_rcra: td_rctrl_ralt {
-            compatible = "zmk,behavior-tap-dance";
-            label = "Tap: RCTRL / Tap-Tap: RALT";
+            compatible     = "zmk,behavior-tap-dance";
+            label          = "Tap: RCTRL / Tap-Tap: RALT";
             #binding-cells = <0>;
-            bindings = <&kp RCTRL>, <&kp RALT>;
+            bindings       = <&kp RCTRL>, <&kp RALT>;
         };
 
         td_tt1: td_tt1 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TT(1)";
+            compatible     = "zmk,behavior-tap-dance";
+            label          = "TT(1)";
             #binding-cells = <0>;
-            bindings = <&mo 1>, <&tog 1>;
+            bindings       = <&mo 1>, <&tog 1>;
         };
 
         td_tt2: td_tt2 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TT(2)";
+            compatible     = "zmk,behavior-tap-dance";
+            label          = "TT(2)";
             #binding-cells = <0>;
-            bindings = <&mo 2>, <&tog 2>;
+            bindings       = <&mo 2>, <&tog 2>;
         };
 
         td_tt3: td_tt3 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TT(3)";
+            compatible     = "zmk,behavior-tap-dance";
+            label          = "TT(3)";
             #binding-cells = <0>;
-            bindings = <&mo 3>, <&tog 3>;
+            bindings       = <&mo 3>, <&tog 3>;
         };
     };
 
@@ -51,26 +51,33 @@
     combos {
         compatible = "zmk,combos";
 
-        capslock_combo {
-            bindings = <&kp CAPSLOCK>;
-            key-positions = <24 37>;
-            layers = <0>;
+        // Regular key combos
+        right_b {
+            bindings      = <&kp B>;
+            key-positions = <32 33>;
         };
 
+        capslock_combo {
+            bindings      = <&kp CAPSLOCK>;
+            key-positions = <24 37>;
+            layers        = <0>;
+        };
+
+        // Layer modification
         to_base {
-            bindings = <&to 0>;
+            bindings      = <&to 0>;
             key-positions = <16 19>;
         };
 
         to_nav {
-            bindings = <&mo 3>;
+            bindings      = <&mo 3>;
             key-positions = <44 43>;
         };
 
         to_debug {
-            bindings = <&to 4>;
+            bindings      = <&to 4>;
             key-positions = <17 18>;
-            layers = <3>;
+            layers        = <3>;
         };
     };
 
@@ -79,14 +86,11 @@
 
         default_layer {
             display-name = "Base";
-
-            // ------------------------------------------------------------------------------------------------------------
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-            // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-            // |  TAB  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
-
+              // ------------------------------------------------------------------------------------------------------------
+              // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
+              // | LCTRL |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   | ENTER |
+              // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
+              // |  ESC  |  1  |  2  |  _   |  4   |  5   |  TT(1) |  | TT(2) |  6   |  7    |  _    |  9   | MINUS | EUQAL |
             bindings = <
 &kp TAB         &kp Q  &kp W     &kp E     &kp R      &kp T                                  &kp Y    &kp U      &kp I      &kp O     &kp P      &kp BACKSPACE
 &mt LCTRL ESC   &kp A  &kp S     &kp D     &kp F      &kp G                                  &kp H    &kp J      &kp K      &kp L     &kp SEMI   &kp ENTER
@@ -101,15 +105,6 @@
 
         Symbol_layer {
             display-name = "Symbols";
-
-            // TODO: Some binds are waiting for shifted keycode support.
-            // -------------------------------
-            // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |  F12  |
-            // |       |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   |   |
-            // |       |  =  |  -  |  +   |  {   |  }   |        |  |       |  [   |  ]    |  ;    |  :   |   \   |       |
-            //               |     |      |      |      |        |  |       |      |       |       |      |
-
             bindings = <
 &kp GRAVE  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5                  &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8      &kp NUMBER_9       &kp NUMBER_0   &kp DELETE
 &trans     &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT                     &kp CARET     &kp AMPS      &kp ASTRK         &kp LPAR           &kp RPAR       &kp SINGLE_QUOTE
@@ -120,14 +115,6 @@
 
         Num_layer {
             display-name = "Number";
-
-            // ------------------------------------------------------------------------------------------------------------
-            // | BTCLR | BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
-            // |       | INS  | PSCR | GUI   |       |      |                | PGUP |      |   ^   |      |       |       |
-            // |       | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   <- |   v   |  ->  |  DEL  | BKSPC |
-            // |       | UNDO | CUT  | COPY  | PASTE |      |      |  |      |      |      |       |      |       |       |
-            //                |      |       |       |      |      |  |      |      |      |       |      |
-
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                  &kp N7  &kp N8  &kp N9  &kp MINUS     &kp EQUAL  &kp DELETE
 &trans  &trans  &trans  &trans  &trans  &trans                  &kp N4  &kp N5  &kp N6  &kp KP_MINUS  &none      &none
@@ -138,7 +125,7 @@
 
         Nav_layer {
             display-name = "Nav";
-            bindings = <
+            bindings     = <
 &kp F12  &kp F1      &kp F2           &kp F3  &kp F4  &kp F5                  &kp F6          &kp F7     &kp F8     &kp F9    &kp F10   &kp F11
 &trans   &kp INSERT  &kp PRINTSCREEN  &trans  &trans  &trans                  &kp HOME        &kp PG_DN  &kp PG_UP  &kp END   &kp UP    &none
 &trans   &trans      &trans           &trans  &trans  &trans  &trans  &trans  &kp KP_NUMLOCK  &none      &none      &kp LEFT  &kp DOWN  &kp RIGHT
@@ -148,20 +135,24 @@
 
         Debug_layer {
             display-name = "Debug";
-
-            // ----------------------------------------------------------------------------------------------------------------------------
-            // | BTCLR  |  BT1    |  BT2    |   BT3   |   BT4   |   BT5   |                  |      |      |       |      |       |       |
-            // | EXTPWR | BTCLR | RGB_HUI | RGB_SAD | RGB_SAI | RGB_EFF |                  |      |      |       |      |       |       |
-            // |        | RGB_BRD | RGB_BRI |         |         |         |                  |      |      |       |      |       |       |
-            // |        |         |         |         |         |         | RGB_TOG | |      |      |      |       |      |       |       |
-            //                    |         |         |         |         |         | |      |      |      |       |      |
-
             bindings = <
 &bt BT_CLR    &none   &none  &none  &bt BT_CLR_ALL  &studio_unlock                &none        &none  &none  &none  &none  &none
 &bt BT_SEL 0  &none   &none  &none  &none           &none                         &none        &none  &none  &none  &none  &none
 &bt BT_SEL 1  &none   &none  &none  &none           &bootloader     &none  &none  &bootloader  &none  &none  &none  &none  &none
 &bt BT_SEL 2  &trans  &none  &none  &none           &none                         &none        &none  &none  &none  &none  &kp N4
             >;
+        };
+
+        Extra_layer1 {
+            status = "reserved";
+        };
+
+        Extra_layer2 {
+            status = "reserved";
+        };
+
+        Extra_layer {
+            status = "reserved";
         };
     };
 };

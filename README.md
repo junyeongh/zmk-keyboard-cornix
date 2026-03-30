@@ -56,11 +56,11 @@ This community firmware has been tested with Cornix using ZMK and provides full 
 the original cornix use flash layout without softdevice
 so in the project. all board use nosd layout as default
 
-if you flash firmware into dongle and found it can't work with the original  firmware
+if you flash firmware into dongle and found it can't work with the original firmware
 you have two solutions
 
 1. （recommend）flash the sd restore uf2 under boooader direcotry（its for nice nano 2 ，but i think it works for most of nrf52840 device） other boards <https://github.com/hitsmaxft/Adafruit_nRF52_Bootloader/actions/runs/18398554358>
-2. build your firmware  with snippet  'nrf
+2. build your firmware with snippet 'nrf
 52840-nosd', make zmk ignore soft device
 
 ## TODO LIST
@@ -78,7 +78,7 @@ Cornix shield has 2 RGB LEDs on each side, controled by PWM in the stock firmwar
 
 The replacement solution is adapting the RGB indicator module to light up these RGBs, to achieve the same effect as the stock firmware, which uses the RGB LEDs to indicate battery status and connection status.
 
-But it is not supported yet in this repository.  PR is welcome!
+But it is not supported yet in this repository. PR is welcome!
 
 ## Supported Hardware: Cornix Split Keyboard
 
@@ -102,7 +102,7 @@ Cornix is a Corne‑inspired split ergonomic keyboard featuring a compact 3×6 c
 Since v2.3 this board' flash partitions has updated, removed SD (reducing sd partitionsize size from 150K to 4K), so You can flash firmware directly.
 
 > You may need to reset fw by reset.uf2 from ealier version
-
+>
 > You can rollback to stock firmware by flash orgin uf2 file, backup files under rmkfw/
 
 ## 🔰 Easy Method: Clone This Repository and Build with GitHub Actions
@@ -148,7 +148,7 @@ This section will guide you through building the Cornix ZMK firmware from scratc
 Before starting, ensure you have the following:
 
 - A GitHub account
- Git installed on your system
+- Git installed on your system
 - Basic understanding of Git and GitHub
 - Your Cornix keyboard PCBs ready
 
@@ -162,12 +162,14 @@ Before starting, ensure you have the following:
    - Click "Create repository"
 
 2. **Clone your new repository locally**:
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
    cd YOUR_REPO_NAME
    ```
 
 3. **Initialize ZMK development environment**:
+
    ```bash
    west init -l config/
    west update
@@ -284,6 +286,7 @@ For users who want to create their own custom dongle configurations, this reposi
 3. **`cornix_dongle_eyelash`** - This is an example shield for setting up display device for the board (if the board already has `zephyr,display` in the device tree, this display overlay shield is not needed)
 
 The configuration in the `build.yaml` file shows how to use these shields for the eyelash dongle:
+
 ```yaml
 include:
   # Use cornix with dongle
@@ -301,6 +304,7 @@ To create a custom shield for the display part:
 4. Include your custom shield in the build configuration
 
 For custom dongle screens, add a new target in build.yaml for your custom dongle:
+
 ```yaml
 - board: nice_nano
   shield: cornix_dongle_adapter cornix_dongle_eyelash dongle_display
@@ -316,6 +320,7 @@ To create a custom shield for your display:
 4. You can copy the `cornix_dongle_eyelash` into your project's `boards/shield/` directory, and use the same name or rename it as a new shield
 
 The configuration in the `west.yml` file remains the same:
+
 ```yaml
 remotes:
   - name: zmkfirmware
@@ -325,6 +330,7 @@ remotes:
   - name: urob
     url-base: https://github.com/urob
 ```
+
 ```yaml
 projects:
   - name: zmk
