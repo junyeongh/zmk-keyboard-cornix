@@ -27,16 +27,17 @@ include:
   #   shield: cornix_dongle_adapter dongle_screen
   #   snippet: studio-rpc-usb-uart
   #   artifact-name: cornix_dongle_zds_nano
-  - artifact-name: cornix_dongle_zds_see
-    board: seeeduino_xiao_ble
-    # shield: cornix_dongle_adapter dongle_screen
-    shield: cornix_dongle_adapter
-    snippet: studio-rpc-usb-uart
+  # - artifact-name: cornix_dongle
+  #   board: xiao_ble//zmk
+  #   # shield: cornix_dongle_adapter dongle_screen
+  #   shield: cornix_dongle
+  #   snippet: studio-rpc-usb-uart
 
-  # Use cornix with dongle
-  - artifact-name: cornix_left_for_dongle_nosd
-    board: cornix_ph_left
-    # shield: cornix_indicator
+  # # Use cornix with dongle
+  # - artifact-name: cornix_left_for_dongle_nosd
+  #   board: cornix_ph_left
+  #   # shield: cornix_indicator
+  #   cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
 
   # Use cornix without dongle
   - artifact-name: cornix_left_default_nosd
