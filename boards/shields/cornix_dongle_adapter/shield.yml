@@ -3,7 +3,12 @@ id: cornix_dongle_adapter
 name: CORNIX_DONGLE_ADAPTER
 type: shield
 url: https://github.com/hitsmaxft/zmk-keyboard-cornix
-requires: [Cornix]
-exposes: [i2c_oled]
+requires: []
+exposes: []
 features:
-  - display
+  - keys
+  - encoder
+  - studio
+  # - led
+siblings:
+  - cornix_dongle_adapter

@@ -14,43 +14,25 @@
 ---
 include:
   # Dongles for cornix
-  # dongle screen not yet supports zephyr4
-  # - board: nice_nano
-  #   shield: cornix_dongle_adapter cornix_dongle_eyelash dongle_display
-  #   snippet: studio-rpc-usb-uart nrf52840-nosd
-  #   artifact-name: cornix_dongle_nosd
-  # - board: nice_nano
-  #   shield: settings_reset
-  #   snippet: studio-rpc-usb-uart nrf52840-nosd
-  #   artifact-name: reset_nicenano_nosd
-  # - board: nice_nano
-  #   shield: cornix_dongle_adapter dongle_screen
-  #   snippet: studio-rpc-usb-uart
-  #   artifact-name: cornix_dongle_zds_nano
-  # - artifact-name: cornix_dongle
-  #   board: xiao_ble//zmk
-  #   # shield: cornix_dongle_adapter dongle_screen
-  #   shield: cornix_dongle
-  #   snippet: studio-rpc-usb-uart
-
-  # # Use cornix with dongle
-  # - artifact-name: cornix_left_for_dongle_nosd
-  #   board: cornix_ph_left
-  #   # shield: cornix_indicator
-  #   cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-
-  # Use cornix without dongle
-  - artifact-name: cornix_left_default_nosd
+  - artifact-name: cornix_dongle
+    board: xiao_ble//zmk
+    shield: cornix_dongle_adapter
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - artifact-name: cornix_dongle_reset
+    board: xiao_ble//zmk
+    shield: settings_reset
+  - artifact-name: cornix_central_left
     board: cornix_left
     # shield: cornix_indicator
     # zmk studio
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
-
-  - artifact-name: cornix_right_nosd
+  - artifact-name: cornix_peripheral_left
+    board: cornix_ph_left
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+  - artifact-name: cornix_peripheral_right
     board: cornix_right
-    # shield: cornix_indicator
-
   - artifact-name: cornix_reset
     board: cornix_right
     shield: settings_reset

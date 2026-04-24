@@ -2,7 +2,7 @@
   "id": "cornix",
   "name": "cornix",
   "layouts": {
-    "LAYOUT_50": {
+    "default_layout": {
       "layout": [
         { "row": 0, "col":  0, "x":                 0, "y":  0.5000000000000001, "label":           "0,0\n\n\n\n1" },
         { "row": 0, "col":  1, "x":                 1, "y":  0.5000000000000001, "label":                    "0,1" },
@@ -124,7 +124,7 @@
           "identifier": "encoder_left",
           "compatible": "alps,ec11",
           "label": "LEFT_ENCODER",
-          "enabled": true 
+          "enabled": true
         },
         {
           "ref": "right_encoder",

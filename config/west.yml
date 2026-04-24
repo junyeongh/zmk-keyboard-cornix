@@ -4,10 +4,6 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: hitsmaxft
       url-base: https://github.com/hitsmaxft
-    - name: urob
-      url-base: https://github.com/urob
-    - name: janpfischer
-      url-base: https://github.com/janpfischer
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -15,21 +11,5 @@ manifest:
       clone-depth: 1
       import:
         file: app/west.yml
-    - name: zmk-helpers
-      remote: urob
-      revision: main
-      clone-depth: 1
-    #- name: zmk-rgbled-widget
-    #  remote: hitsmaxft
-    #  revision: main
-    #  clone-depth: 1
-    - name: zmk-dongle-display
-      remote: hitsmaxft
-      revision: zephyr4
-      clone-depth: 1
-    #- name: zmk-dongle-screen
-    #  remote: janpfischer
-    #  revision: main
-    #  clone-depth: 1
   self:
     path: config
