@@ -1,6 +1,6 @@
 file_format: "1"
-id: cornix_dongle_adapter
-name: CORNIX_DONGLE_ADAPTER
+id: cornix_dongle
+name: CORNIX_DONGLE
 type: shield
 url: https://github.com/hitsmaxft/zmk-keyboard-cornix
 requires: []
@@ -11,4 +11,4 @@ features:
   - studio
   # - led
 siblings:
-  - cornix_dongle_adapter
+  - cornix_dongle

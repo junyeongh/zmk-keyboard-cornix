@@ -1,4 +1,4 @@
-if SHIELD_CORNIX_DONGLE_ADAPTER
+if SHIELD_CORNIX_DONGLE
 
 # Max 16 characters in keyboard name
 config ZMK_KEYBOARD_NAME
