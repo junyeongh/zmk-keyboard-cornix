@@ -13,10 +13,10 @@
 #define SYM   1
 #define NUM   2
 #define NAV   3
-#define RES1  4
-#define RES2  5
-#define RES3  6
-#define DEBUG 7
+#define DEBUG 4
+#define RES1  5
+#define RES2  6
+#define RES3  7
 
 / {
     behaviors {
@@ -143,18 +143,18 @@
             >;
         };
 
-        Extra_layer1 { status = "reserved"; };
-        Extra_layer2 { status = "reserved"; };
-        Extra_layer3 { status = "reserved"; };
-
         Debug_layer {
             display-name = "Debug";
             bindings = <
-&out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_CLR  &bt BT_CLR_ALL                &none        &none  &none  &none  &none  &none
-&out OUT_USB  &none         &none         &none         &none       &none                         &none        &none  &none  &none  &none  &none
-&none         &none         &none         &none         &none       &bootloader     &none  &none  &bootloader  &none  &none  &none  &none  &none
-&none         &trans        &none         &none         &none       &none                         &none        &none  &none  &none  &none  &kp N4
+            &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_CLR  &bt BT_CLR_ALL                &none        &none  &none  &none  &none  &none
+            &out OUT_USB  &none         &none         &none         &none       &none                         &none        &none  &none  &none  &none  &none
+            &none         &none         &none         &none         &none       &bootloader     &none  &none  &bootloader  &none  &none  &none  &none  &none
+            &none         &trans        &none         &none         &none       &none                         &none        &none  &none  &none  &none  &kp N4
             >;
         };
+
+        Extra_layer1 { status = "reserved"; };
+        Extra_layer2 { status = "reserved"; };
+        Extra_layer3 { status = "reserved"; };
     };
 };
