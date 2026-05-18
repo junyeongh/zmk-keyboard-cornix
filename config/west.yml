@@ -2,6 +2,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
     - name: hitsmaxft
       url-base: https://github.com/hitsmaxft
   projects:
@@ -11,5 +13,8 @@ manifest:
       clone-depth: 1
       import:
         file: app/west.yml
+    - name: zmk-rgbled-widget
+      remote: caksoylar # caksoylar
+      revision: main
   self:
     path: config
