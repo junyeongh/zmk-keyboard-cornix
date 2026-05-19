@@ -207,5 +207,5 @@ test $testpath *FLAGS:
 build-docker:
     act --workflows .github/workflows/build.yml --artifact-server-path .local/
 
-build-remote:
-    gh workflow run build.yml --repo junyeongh/zmk-keyboard-cornix
+build-remote ref="main":
+    gh workflow run build.yml --repo junyeongh/zmk-keyboard-cornix --ref {{ref}}
