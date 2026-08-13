@@ -1,28 +1,25 @@
 # ZMK Keyboard for Cornix
 
-Repository forked from [hitsmaxft/zmk-keyboard-cornix](https://github.com/hitsmaxft/zmk-keyboard-cornix)
+[日本語版 README（AI-generated）](./README_jp.md)
 
-## Additional `just` commands
-
-```bash
-# Build firmware locally using act on docker
-just build-docker
-
-# Build firmware remotely triggering GitHub Actions
-just build-remote
-```
-
-## Useful Links
-
-- [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/)
-- [Keymap Drawer](https://keymap-drawer.streamlit.app/)
-
-![https://github.com/junyeongh/zmk-keyboard-cornix/blob/main/config/cornix.keymap](./images/cornix.keymap.png)
-
----
-
-<details>
-   <summary>README.md from original repository</summary>
+> [!IMPORTANT]
+> **Zephyr 4.1 / ZMK main upgrade note**
+>
+> This module targets the Zephyr 4.1-based ZMK main branch. If you are using this
+> module from an existing `zmk-config`, make sure your west manifest follows ZMK
+> `main` (or another Zephyr 4.1-compatible ZMK revision) before updating this
+> module.
+>
+> Zephyr 4.1 also introduces the qualified ZMK board target syntax. Prefer the
+> new `board//zmk` names for ZMK builds:
+>
+> - `cornix_left//zmk`
+> - `cornix_right//zmk`
+> - `cornix_ph_left//zmk`
+> - `nice_nano//zmk` for dongle / reset builds
+>
+> The older unqualified names are kept for compatibility, but new build configs
+> should use the qualified board names above.
 
 ## Introduction to Boards and Shields
 
