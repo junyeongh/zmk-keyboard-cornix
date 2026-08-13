@@ -24,7 +24,7 @@ include:
     shield: settings_reset
   - artifact-name: cornix_dongle
     board: nice_nano//zmk
-    shield: cornix_dongle rgbled_adapter
+    shield: cornix_dongle dongle_display
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
   - artifact-name: cornix_dongle_reset
