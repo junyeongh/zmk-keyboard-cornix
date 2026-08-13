@@ -22,18 +22,27 @@ include:
   - artifact-name: cornix_dongle_reset
     board: xiao_ble//zmk
     shield: settings_reset
-  - artifact-name: cornix_central_left
+  - artifact-name: cornix_dongle
+    board: nice_nano//zmk
+    shield: cornix_dongle rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - artifact-name: cornix_dongle_reset
+    board: nice_nano//zmk
+    shield: settings_reset
+
+  - artifact-name: cornix_lp_central_left
     board: cornix_left
     # shield: cornix_indicator
     # zmk studio
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - artifact-name: cornix_peripheral_left
+  - artifact-name: cornix_lp_peripheral_left
     board: cornix_ph_left
     cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-  - artifact-name: cornix_peripheral_right
+  - artifact-name: cornix_lp_peripheral_right
     board: cornix_right
-  - artifact-name: cornix_reset
+  - artifact-name: cornix_lp_reset
     board: cornix_right
     shield: settings_reset
     snippet: studio-rpc-usb-uart nrf52840-nosd

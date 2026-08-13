@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: caksoylar
       url-base: https://github.com/caksoylar
+    - name: englmaxi
+      url-base: https://github.com/englmaxi
     - name: hitsmaxft
       url-base: https://github.com/hitsmaxft
   projects:
@@ -16,5 +18,9 @@ manifest:
     - name: zmk-rgbled-widget
       remote: caksoylar # caksoylar
       revision: main
+    - name: zmk-dongle-display
+      remote: englmaxi
+      revision: main
+      clone-depth: 1
   self:
     path: config
