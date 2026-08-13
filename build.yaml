@@ -18,7 +18,15 @@ include:
     board: xiao_ble//zmk
     shield: cornix_dongle rgbled_adapter
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    cmake-args: >-
+      -DCONFIG_ZMK_STUDIO=y
+      -DCONFIG_RGBLED_WIDGET=y
+      -DCONFIG_RGBLED_WIDGET_CONN_COLOR_CONNECTED=4
+      -DCONFIG_RGBLED_WIDGET_CONN_COLOR_ADVERTISING=3
+      -DCONFIG_RGBLED_WIDGET_CONN_COLOR_DISCONNECTED=1
+      -DCONFIG_RGBLED_WIDGET_CONN_SHOW_USB=y
+      -DCONFIG_RGBLED_WIDGET_CONN_COLOR_USB=7
+      -DCONFIG_RGBLED_WIDGET_SHOW_LAYER_CHANGE=y
   - artifact-name: cornix_dongle_reset
     board: xiao_ble//zmk
     shield: settings_reset
