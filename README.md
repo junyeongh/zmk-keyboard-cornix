@@ -1,48 +1,39 @@
 # ZMK Keyboard for Cornix
 
-[日本語版 README（AI-generated）](./README_jp.md)
+ZMK board definitions and shields for the Cornix split ergonomic keyboard.
 
-> [!IMPORTANT]
-> **Zephyr 4.1 / ZMK main upgrade note**
->
-> This module targets the Zephyr 4.1-based ZMK main branch. If you are using this
-> module from an existing `zmk-config`, make sure your west manifest follows ZMK
-> `main` (or another Zephyr 4.1-compatible ZMK revision) before updating this
-> module.
->
-> Zephyr 4.1 also introduces the qualified ZMK board target syntax. Prefer the
-> new `board//zmk` names for ZMK builds:
->
-> - `cornix_left//zmk`
-> - `cornix_right//zmk`
-> - `cornix_ph_left//zmk`
-> - `nice_nano//zmk` for dongle / reset builds
->
-> The older unqualified names are kept for compatibility, but new build configs
-> should use the qualified board names above.
+[Documentation: English / 简体中文](http://gh.bhee.online/zmk-keyboard-cornix/) ·
+[简体中文 README](./README_zh.md) ·
+[日本語 README (AI-generated)](./README_jp.md)
 
-## Introduction to Boards and Shields
+**Current board release:** [`v3.0.0`](https://github.com/hitsmaxft/zmk-keyboard-cornix/releases/tag/v3.0.0)
 
-This repository contains the ZMK firmware configuration for the Cornix split keyboard. Below is an explanation of the different boards and shields available in this project:
+**ZMK baseline:** `main` with Zephyr 4.1
 
-### Boards
+![Cornix with dongle](images/cornix_with_dongle.png)
 
-The project includes three main board definitions:
+## What is included
 
-- **`cornix_left`**: The left half of the Cornix split keyboard, used when building firmware without a dongle configuration.
-- **`cornix_right`**: The right half of the Cornix split keyboard, used for the slave side in split keyboard setup.
-- **`cornix_ph_left`**: Alternative left half board configuration, specifically designed for use with a dongle setup.
+- `cornix_left//zmk` — left half for a standard split build
+- `cornix_right//zmk` — right peripheral half
+- `cornix_ph_left//zmk` — left peripheral half for a dongle build
+- `cornix_dongle_adapter` — central dongle matrix and Bluetooth role
+- `cornix_dongle_eyelash` — optional display hardware overlay
+- `cornix_indicator` — production-ready RGB battery and connection indicators
 
-### Shields
+Cornix uses a compact 3×6 column-staggered layout with three thumb keys per
+half. The hardware supports USB-C, Bluetooth, Kailh Choc V2 hot-swap sockets,
+and 10°, 18°, or 25° tenting.
 
-The project includes several specialized shields that provide additional functionality:
+## Zephyr 4.1 requirements
 
-- **`cornix_dongle_adapter`**: Provides common functionality for the matrix and Bluetooth functionality for dongle configurations. This shield is required when using the Cornix with a custom dongle.
-- **`cornix_dongle_eyelash`**: An example shield for setting up display device for the dongle board. This is used when the board doesn't already have `zephyr,display` in the device tree.
-- **`cornix_indicator`**: A shield that enables RGB LED indicators for battery status and connection status. Note that using this shield consumes more power.
+Always use qualified ZMK board names such as `nice_nano//zmk`. The unqualified
+`nice_nano` target may select `CONFIG_SETTINGS_NONE=y`, discard the Bluetooth
+identity after reboot, and break existing split bonds.
 
----
+For every nice!nano dongle or reset build, verify the final `.config` contains:
 
+<<<<<<< HEAD
 This community firmware has been tested with Cornix using ZMK and provides full split-role configuration, battery power management, and Bluetooth central/peripheral setup per ZMK split guidelines
 
 ![image](images/cornix_with_dongle.png)
@@ -198,24 +189,18 @@ remotes:
     url-base: https://github.com/hitsmaxft
   - name: urob
     url-base: https://github.com/urob
+=======
+```text
+CONFIG_NVS=y
+CONFIG_SETTINGS_NVS=y
+>>>>>>> upstream/main
 ```
 
-Add to the `manifest/projects` section:
+It must not contain `CONFIG_SETTINGS_NONE=y`.
 
-```yaml
-projects:
-  - name: zmk
-    remote: zmkfirmware
-    revision: main
-    import: app/west.yml
-  - name: zmk-keyboard-cornix
-    remote: cornix-shield
-    revision: main
-  - name: zmk-helpers
-    remote: urob
-    revision: main
-```
+## Build targets
 
+<<<<<<< HEAD
 ### 2. Update Dependencies
 
 ```bash
@@ -231,35 +216,26 @@ Edit the `build.yaml` file, add:
 > 1. If you are using (default) cornix without dongle, choose "cornix_left", "cornix_right" and "reset".
 > 2. If you are using cornix with dongle, choose "cornix_dongle". "cornix_left_for_dongle", "cornix_right" and "reset".
 > 3. Add "cornix_indicator" shield to enable RGB led light. It consumes much more power, use at your own risk.
+=======
+Standard split:
+>>>>>>> upstream/main
 
 ```yaml
 include:
-  # Use cornix with dongle
-  - board: nice_nano
-    shield: cornix_dongle_adaptor cornix_dongle_eyelash dongle_display
-    snippet: studio-rpc-usb-uart
-    artifact-name: cornix_dongle
-
-  - board: cornix_ph_left
-    # shield: cornix_indicator
-    artifact-name: cornix_left_for_dongle
-
-  # Use cornix without dongle
-  - board: cornix_left
-    # shield: cornix_indicator
+  - board: cornix_left//zmk
     artifact-name: cornix_left
 
-  - board: cornix_right
-    # shield: cornix_indicator
+  - board: cornix_right//zmk
     artifact-name: cornix_right
 
-  - board: cornix_right
+  - board: cornix_right//zmk
     shield: settings_reset
-    artifact-name: reset
+    artifact-name: cornix_reset
 ```
 
-### 4. Build Firmware
+Dongle integration:
 
+<<<<<<< HEAD
 Use your preferred method to build
 
 - no need to recovery the sd since 2.3
@@ -284,15 +260,27 @@ For users who want to create their own custom dongle configurations, this reposi
 
 The configuration in the `build.yaml` file shows how to use these shields for the eyelash dongle:
 
+=======
+>>>>>>> upstream/main
 ```yaml
 include:
-  # Use cornix with dongle
-  - board: nice_nano
+  - board: nice_nano//zmk
     shield: cornix_dongle_adapter cornix_dongle_eyelash dongle_display
     snippet: studio-rpc-usb-uart
     artifact-name: cornix_dongle
+
+  - board: cornix_ph_left//zmk
+    artifact-name: cornix_left_for_dongle
+
+  - board: cornix_right//zmk
+    artifact-name: cornix_right
+
+  - board: nice_nano//zmk
+    shield: settings_reset
+    artifact-name: dongle_reset
 ```
 
+<<<<<<< HEAD
 To create a custom shield for the display part:
 
 1. The `dongle_display` module is a module contains display widgets, included as part of the project dependencies via west or locally
@@ -341,16 +329,38 @@ projects:
     remote: urob
     revision: main
 ```
+=======
+Use `cornix_dongle_eyelash` only when the dongle board does not already expose
+`zephyr,display`. The `dongle_display` module supplies the display widgets.
 
-## Build This Project Locally (Without west.yaml Dependency)
+## RGB indicators
 
-If you prefer to build this project locally without adding it as a dependency in your west.yaml, you can use the ZMK_EXTRA_MODULES cmake argument.
+Version 3.0.0 makes the optional `cornix_indicator` shield production-ready.
+It uses `zmk-rgbled-widget` to show battery and split-connection state.
 
-### Prerequisites
+The shield sets `CONFIG_RGBLED_WIDGET_EXT_POWER_TIMEOUT_MS=1000`. When no
+animation or static indicator remains active, the WS2812 power rail is turned
+off after 1000 ms to reduce idle consumption. LEDs that remain illuminated
+still consume power. RGB is opt-in and is not enabled in the default v3.0.0
+release artifacts.
+>>>>>>> upstream/main
 
-1. Have a working ZMK development environment set up
-2. Clone this repository to a local directory
+## Flashing and recovery
 
+1. Flash the matching settings-reset UF2 to every role whose bonds must be
+   cleared.
+2. Flash the left, right, and optional dongle UF2 files to their matching
+   devices.
+3. Reset both halves together and then reconnect the host.
+
+Cornix has used the no-SoftDevice flash layout since v2.3. For older firmware,
+stock RMK interoperability, or a board that no longer enters UF2 mode, follow
+the [bootloader recovery guide](./bootloader/README.md). Do not mix firmware
+roles or flash layouts without resetting the affected devices.
+
+## Documentation and support
+
+<<<<<<< HEAD
 ### Build Steps
 
 1. **Clone this repository**:
@@ -384,3 +394,10 @@ west build -b cornix_right
 This method allows you to use the Cornix shield without modifying your existing ZMK configuration's west.yaml file.
 
 </details>
+=======
+- [English installation guide](http://gh.bhee.online/zmk-keyboard-cornix/en/)
+- [中文安装指南](http://gh.bhee.online/zmk-keyboard-cornix/zh/)
+- [ZMK documentation](https://zmk.dev/docs/)
+- [Issue tracker](https://github.com/hitsmaxft/zmk-keyboard-cornix/issues)
+- [RMK firmware project](https://rmk.rs/)
+>>>>>>> upstream/main
